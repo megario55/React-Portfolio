@@ -22,10 +22,10 @@ export const featuresData = [
     title: "Creative Design",
     des:"Engaging animations & dynamic visuals create an immersive user experience,while features like dark mode & responsive layouts cater to diverse audiences."
   },
-  {
-    id: 6,
-    icon: <FaGlobe />,
-    title: "Responsive Design",
-    des:"Create the pages looks great on all devices, including mobile, tablets, and desktops also it became scalability & efficiency for diverse applications",
-  },
+  // {
+  //   id: 6,
+  //   icon: <FaGlobe />,
+  //   title: "Responsive Design",
+  //   des:"Create the pages looks great on all devices, including mobile, tablets, and desktops also it became scalability & efficiency for diverse applications",
+  // },
 ];
