@@ -5,7 +5,7 @@ import ProjectsCard from './ProjectsCard';
 import img05 from '../../assets/images/Emailcon.png';
 import img02 from '../../assets/images/Resume-builder.png';
 import img03 from '../../assets/images/Internship.png';
-import img04 from '../../assets/images/Employe-portal.png';
+import img04 from '../../assets/images/ATTS-Aurumm.png';
 // import img05 from '../../assets/images/project05.png';
 import img01 from '../../assets/images/React-clone.png'
 import img06 from '../../assets/images/Shopify.png';
@@ -40,13 +40,12 @@ resume templates and multi-color customization for a personalized user experienc
           alt='https://github.com/megario55/Resume-Builder'
           alt2='https://megario55.github.io/Resume-Builder/Resume-frontpage.html'
         />
-        {/* added campus voices  */}
         <ProjectsCard
-          title="Notes App"
-          des="The main objective of project is became portable and easily add,delete,read and update datas.Here I can use Restapi to fetch data from front end with help of writing schema and various types of Npm packages like mongoose,express,axios,cors,and react-router-dom"
+          title="ATTS Aurumm Project"
+          des="ATTS Aurumm is a web application that provides a cutting-edge solution designed to streamline and enhance jewellery store operations. By integrating advanced technology with industry expertise, AURUMM ensures seamless inventory management, secure transactions, and an intuitive user experience."
           src={img04}
-          alt='https://github.com/megario55/Notes-App'
-          alt2='https://notes-app-six-pi.vercel.app/'
+          alt='https://github.com/megario55/ATTS-Aurumm'
+          alt2='https://atts-aurumm.onrender.com/'
         />
         <ProjectsCard
           title="Internship App"

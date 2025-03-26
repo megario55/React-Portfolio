@@ -16,12 +16,12 @@ export const featuresData = [
     title: "Software Development",
     des: "Design, develop, and maintain software applications tailored to business and user needs, ensuring performance and scalability.",
   },
-  {
-    id: 5,
-    icon: <SiAntdesign />,
-    title: "Creative Design",
-    des:"Engaging animations & dynamic visuals create an immersive user experience,while features like dark mode & responsive layouts cater to diverse audiences."
-  },
+  // {
+  //   id: 5,
+  //   icon: <SiAntdesign />,
+  //   title: "Creative Design",
+  //   des:"Engaging animations & dynamic visuals create an immersive user experience,while features like dark mode & responsive layouts cater to diverse audiences."
+  // },
   {
     id: 6,
     icon: <FaGlobe />,
