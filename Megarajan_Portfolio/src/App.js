@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import FooterBottom from "./components/footer/FooterBottom";
 import Navbar from "./components/navbar/Navbar";
 import Projects from "./components/projects/Projects";
+import Skills from "./components/resume/Skills";
 
 // importing app
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Banner/>
         <Features/>
         <Projects/>
+        <Skills/>
         <Contact/>
         <Footer/>
         <FooterBottom/>
