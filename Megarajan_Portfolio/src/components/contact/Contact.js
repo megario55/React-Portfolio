@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import Title from '../layouts/Title';
 import ContactLeft from './ContactLeft';
-import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import './Contact.css';
 
 const Contact = () => {
   const [formValues, setFormValues] = useState({
     name: '',
-    age: '',
-    gender: '',
-    phoneNumber: '',
-    profession: ''
+    phoneNo: '',
+    email: '',
+    subject: '',
+    message: ''
   });
+
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,52 +23,53 @@ const Contact = () => {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-    setSuccess(false);
 
-    const formData = new FormData();
-    for (const key in formValues) {
-      formData.append(key, formValues[key]);
+    // Validation check
+    if (!formValues.name || !formValues.phoneNo || !formValues.email || !formValues.subject || !formValues.message) {
+      return toast.error("Please fill all fields", {
+        position: 'top-center'
+      });
     }
 
+    setLoading(true);
+
+    const payload = { ...formValues };
+
     try {
-      const response = await axios.post(
-        "https://script.google.com/macros/s/AKfycbx14fQHbtSRFqwriaAO0TuRQ0D-ThPkEcoozoqLZWLEpESgGtmTUl5yafuReS7JvByx/exec",
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
-      console.log('Response:', response.data);
-      if (response.data.result === 'success') {
-        setFormValues({
-          name: '',
-          age: '',
-          gender: '',
-          phoneNumber: '',
-          profession: ''
-        });
-        setSuccess(true);
-      } else {
-        setError('Failed to submit the form. Please try again.');
-      }
+      await fetch("https://script.google.com/macros/s/AKfycbxUFGXbbs-1FOwI5cxnNpMSdWKcJYqvfZttpNMI89Cmv6wXwpGZOcSVAhTJkDnhHwOG/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      setFormValues({
+        name: '',
+        phoneNo: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+
+      toast.success("Your message has been sent!", {
+        position: 'top-center'
+      });
     } catch (err) {
-      console.error('Error:', err);
-      setError('Failed to submit the form. Please try again.');
+      toast.error("Failed to send message. Try again.", {
+        position: 'top-center'
+      });
     } finally {
       setLoading(false);
     }
   };
 
-
   return (
     <section id="contact" className="w-full py-20 border-b-[1px] border-b-black">
+      <Toaster /> {/* Toast container */}
       <div className="flex justify-center items-center text-center">
         <Title title="CONTACT" des="Contact With Me" />
       </div>
@@ -79,8 +78,6 @@ const Contact = () => {
           <ContactLeft />
           <div className="w-full lgl:w-[60%] h-full py-10 bg-gradient-to-r from-[#1e2024] to-[#23272b] flex flex-col gap-8 p-4 lgl:p-8 rounded-lg shadow-shadowOne">
             <form className="w-full flex flex-col gap-4 lgl:gap-6 py-2 lgl:py-5" onSubmit={handleSubmit}>
-
-     
               <div className="w-full flex flex-col lgl:flex-row gap-10">
                 <div className="w-full lgl:w-1/2 flex flex-col gap-4">
                   <p className="text-sm text-gray-400 uppercase tracking-wide">Your name</p>
@@ -88,7 +85,7 @@ const Contact = () => {
                     name="name"
                     value={formValues.name}
                     onChange={handleChange}
-                    className={`${errMsg === "Username is required!" && "outline-designColor"} contactInput`}
+                    className="contactInput"
                     type="text"
                   />
                 </div>
@@ -98,7 +95,7 @@ const Contact = () => {
                     name="phoneNo"
                     value={formValues.phoneNo}
                     onChange={handleChange}
-                    className={`${errMsg === "Phone number is required!" && "outline-designColor"} contactInput`}
+                    className="contactInput"
                     type="text"
                   />
                 </div>
@@ -109,7 +106,7 @@ const Contact = () => {
                   name="email"
                   value={formValues.email}
                   onChange={handleChange}
-                  className={`${errMsg === "Please give your Email!" && "outline-designColor"} contactInput`}
+                  className="contactInput"
                   type="email"
                 />
               </div>
@@ -119,7 +116,7 @@ const Contact = () => {
                   name="subject"
                   value={formValues.subject}
                   onChange={handleChange}
-                  className={`${errMsg === "Please give your Subject!" && "outline-designColor"} contactInput`}
+                  className="contactInput"
                   type="text"
                 />
               </div>
@@ -129,7 +126,7 @@ const Contact = () => {
                   name="message"
                   value={formValues.message}
                   onChange={handleChange}
-                  className={`${errMsg === "Message is required!" && "outline-designColor"} contactTextArea`}
+                  className="contactTextArea"
                   cols="30"
                   rows="8"
                 ></textarea>
@@ -137,21 +134,16 @@ const Contact = () => {
               <div className="w-full">
                 <button
                   type="submit"
-                  className="w-full h-12 bg-[#141518] rounded-lg text-base text-gray-400 tracking-wider uppercase hover:text-white duration-300 hover:border-[1px] hover:border-designColor border-transparent"
+                  className="w-full h-12 bg-[#141518] rounded-lg text-base text-gray-400 tracking-wider uppercase hover:text-white duration-300 hover:border-[1px] hover:border-designColor border-transparent flex items-center justify-center gap-2"
+                  disabled={loading}
                 >
-                  Send Message
+                  {loading ? (
+                    <span className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></span>
+                  ) : (
+                    "Send Message"
+                  )}
                 </button>
               </div>
-              {errMsg && (
-                <p className="py-3 bg-gradient-to-r from-[#1e2024] to-[#23272b] shadow-shadowOne text-center text-orange-500 text-base tracking-wide animate-bounce">
-                  {errMsg}
-                </p>
-              )}
-              {successMsg && (
-                <p className="py-3 bg-gradient-to-r from-[#1e2024] to-[#23272b] shadow-shadowOne text-center text-green-500 text-base tracking-wide animate-bounce">
-                  {successMsg}
-                </p>
-              )}
             </form>
           </div>
         </div>

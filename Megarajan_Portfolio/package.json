@@ -18,11 +18,13 @@
     "framer-motion": "^8.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.5.2",
     "react-icons": "^4.12.0",
     "react-scripts": "^5.0.1",
     "react-scroll": "^1.8.9",
     "react-simple-typewriter": "^5.0.1",
     "react-slick": "^0.29.0",
+    "react-toastify": "^11.0.5",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
