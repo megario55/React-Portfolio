@@ -7,20 +7,20 @@ import FooterBottom from "./components/footer/FooterBottom";
 import Navbar from "./components/navbar/Navbar";
 import Projects from "./components/projects/Projects";
 import Skills from "./components/resume/Skills";
+import FadeInSection from "./components/FadeInSection"; // Import the wrapper
 
-// importing app
 function App() {
   return (
     <div className="w-full h-auto bg-bodyColor text-lightText px-4">
-        <Navbar/>
+      <Navbar />
       <div className="max-w-screen-xl mx-auto">
-        <Banner/>
-        <Features/>
-        <Projects/>
-        <Skills/>
-        <Contact/>
-        <Footer/>
-        <FooterBottom/>
+        <FadeInSection><Banner /></FadeInSection>
+        <FadeInSection delay={0.1}><Features /></FadeInSection>
+        <FadeInSection delay={0.2}><Projects /></FadeInSection>
+        <FadeInSection delay={0.3}><Skills /></FadeInSection>
+        <FadeInSection delay={0.4}><Contact /></FadeInSection>
+        <FadeInSection delay={0.5}><Footer /></FadeInSection>
+        <FadeInSection delay={0.6}><FooterBottom /></FadeInSection>
       </div>
     </div>
   );
