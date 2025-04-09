@@ -28,8 +28,8 @@ const Projects = () => {
           des="Emailcon Campaign is to Create customizable email templates using components like Headings, Buttons, Clickable Images, Paragraphs, and Social Icons.Send emails to single or bulk recipients using Nodemailer , store recipient emails via Excel file , and track campaign status in MongoDB."
         
           src={img05}
-          alt='https://github.com/megario55/Emailcon-Template'
-          alt2='https://emailcon-template.onrender.com/'
+          alt='https://github.com/megario55/Emailcon-tracking'
+          alt2='https://emailcon.onrender.com/'
         />
         <ProjectsCard
           title="Resume Builder App"
