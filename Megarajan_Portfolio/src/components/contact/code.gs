@@ -1,65 +1,51 @@
-function doPost(e) {
-  const sheet = SpreadsheetApp.openById('1Z-4tUkqHdmj-vsWp5jsQKKjQDE_TttTAQ8GzyOKGNLQ').getSheetByName('Sheet1');
-  const params = e.parameter;
-
-  sheet.appendRow([
-    params.name,
-    params.phoneNo,
-    params.email,
-    params.subject,
-    params.message,
-  ]);
-
-  const output = ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
-    .setMimeType(ContentService.MimeType.JSON);
-
-  // Add CORS headers to allow cross-origin requests
-  output.setHeader("Access-Control-Allow-Origin", "*");
-  output.setHeader("Access-Control-Allow-Methods", "POST");
-  output.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  return output;
-}
-
-function doGet(e) {
-  const output = ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
-    .setMimeType(ContentService.MimeType.JSON);
-
-  // Add CORS headers to allow cross-origin requests
-  output.setHeader("Access-Control-Allow-Origin", "*");
-  output.setHeader("Access-Control-Allow-Methods", "GET");
-  output.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  return output;
-}
-
-
-
-
+// This function handles POST requests and adds data to your Google Sheet
 function doPost(e) {
   try {
-    const sheet = SpreadsheetApp.openById('1LaGWE93ym1im2fDI92NgO78UZzT1t43ZsXBx4V_TBbE').getSheetByName('Sheet1');
-    const params = e.parameter;
+    // Replace this with your actual Google Sheet ID
+    const sheet = SpreadsheetApp.openById("120J61ko1LARlUXu57G0EM8hYtw1vzjHnSFpO4LV34kQ").getSheetByName("Sheet1");
 
+    // Parse the incoming JSON data
+    const data = JSON.parse(e.postData.contents);
+
+    // Add data to the sheet
     sheet.appendRow([
-      params.username,
-      params.phoneNumber,
-      params.email,
-      params.subject,
-      params.message,
+      data.name || '',
+      data.phoneNo || '',
+      data.email || '',
+      data.subject || '',
+      data.message || '',
+      new Date()
     ]);
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success' }))
-      .setMimeType(ContentService.MimeType.JSON);
+    // Return a success response with CORS headers
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success' }))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeaders({
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Headers": "Content-Type"
+      });
   } catch (error) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': error.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(JSON.stringify({ result: 'error', error: error.message }))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeaders({
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Headers": "Content-Type"
+      });
   }
 }
 
+// This function handles the preflight OPTIONS request for CORS
+function doOptions(e) {
+  return ContentService.createTextOutput("")
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeaders({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+}
 
 
-https://docs.google.com/spreadsheets/d/1Z-4tUkqHdmj-vsWp5jsQKKjQDE_TttTAQ8GzyOKGNLQ/edit?usp=sharing
-https://script.google.com/macros/s/AKfycbx14fQHbtSRFqwriaAO0TuRQ0D-ThPkEcoozoqLZWLEpESgGtmTUl5yafuReS7JvByx/exec
+https://script.google.com/macros/s/AKfycbxUFGXbbs-1FOwI5cxnNpMSdWKcJYqvfZttpNMI89Cmv6wXwpGZOcSVAhTJkDnhHwOG/exec
