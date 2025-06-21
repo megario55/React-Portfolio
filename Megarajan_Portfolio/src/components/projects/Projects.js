@@ -29,7 +29,7 @@ const Projects = () => {
         
           src={img05}
           alt='https://github.com/megario55/Emailcon-tracking'
-          alt2='https://emailcon.onrender.com/'
+          alt2='https://emailcon.in/'
         />
         <ProjectsCard
           title="Resume Builder App"
