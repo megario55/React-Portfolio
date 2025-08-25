@@ -10,11 +10,10 @@ import profilePic from "../../assets/images/ban2.jpg";
 
 const accentColor = "#fd0054";
 
-function BlobImage() {
+const BlobImage = () => {
   return (
     <svg
-      width="500"
-      height="440"
+      className="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[440px] transition-all duration-300"
       viewBox="0 0 200 200"
       xmlns="http://www.w3.org/2000/svg"
       style={{ display: "block", margin: "auto" }}
@@ -43,8 +42,7 @@ function BlobImage() {
       </g>
     </svg>
   );
-}
-
+};
 
 const RightSide = () => {
   const handleDownload = () => {
@@ -55,9 +53,9 @@ const RightSide = () => {
   };
 
   return (
-    <div className="w-full lgl:w-1/2 flex flex-col items-center justify-center gap-8">
+    <div className="w-full sm:w-11/12 md:w-3/4 lg:w-1/2 flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-8 p-4 sm:p-6 md:p-8">
       <BlobImage />
-      <div className="flex items-center gap-5 mt-6">
+      <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-5 mt-3 sm:mt-4 md:mt-6">
         <a className="bannerIcon" href="mailto:megarajan55@gmail.com" aria-label="Email">
           <EmailIcon fontSize="medium" />
         </a>
