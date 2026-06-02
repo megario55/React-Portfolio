@@ -1,20 +1,22 @@
 import React from 'react'
 import Title from '../layouts/Title'
-// import { projectOne, projectTwo, projectThree } from "../../assets/index";
 import ProjectsCard from './ProjectsCard';
 import img05 from '../../assets/images/Emailcon.png';
 import img02 from '../../assets/images/Resume-builder.png';
 import img03 from '../../assets/images/Internship.png';
 import img04 from '../../assets/images/ATTS-Aurumm.png';
-// import img05 from '../../assets/images/project05.png';
 import img01 from '../../assets/images/React-clone.png'
 import img06 from '../../assets/images/Shopify.png';
+import { useTheme } from '../../context/ThemeContext';
 
 const Projects = () => {
+  const { darkMode } = useTheme();
   return (
     <section
       id="projects"
-      className="w-full py-20 border-b-[1px] border-b-black"
+      className={`w-full py-20 border-b-[1px] ${
+        darkMode ? 'border-b-black' : 'border-b-lightBorder'
+      }`}
     >
       <div className="flex justify-center items-center text-center">
         <Title
@@ -26,7 +28,7 @@ const Projects = () => {
         <ProjectsCard
           title="Emailcon Campaign App"
           des="Emailcon Campaign is to Create customizable email templates using components like Headings, Buttons, Clickable Images, Paragraphs, and Social Icons.Send emails to single or bulk recipients using Nodemailer , store recipient emails via Excel file , and track campaign status in MongoDB."
-        
+
           src={img05}
           alt='https://github.com/megario55/Emailcon-tracking'
           alt2='https://emailcon.in/'
@@ -54,7 +56,7 @@ resume templates and multi-color customization for a personalized user experienc
           alt='https://github.com/megario55/Internship'
           alt2='https://megario55.github.io/Internship/mainpage.html'
         />
-        <ProjectsCard 
+        <ProjectsCard
         className='projectimg-one'
           title="React Clone App"
           des="A React clone app replicates the core features of the popular pizza bar page, showcasing a responsive design, dynamic content rendering, and interactive user interface components using React."

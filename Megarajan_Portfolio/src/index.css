@@ -3,37 +3,133 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .bannerIcon{
-        @apply w-16 h-16 bg-black bg-opacity-25 text-gray-200 text-xl inline-flex items-center justify-center rounded-md shadow-shadowOne hover:bg-opacity-40 hover:-translate-y-1 transition-all hover:text-designColor cursor-pointer duration-300;
-    }
-    .resumeLi {
-    @apply w-full h-20 bg-black bg-opacity-25 text-xl text-gray-300 flex justify-center cursor-pointer hover:bg-opacity-40 duration-300 items-center border-[1px] rounded-none;
-         }
-.bgOpacity {
-@apply bg-black bg-opacity-40;
-                  }
-    .contactInput{
-        @apply w-full h-12 rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300
-    }
-.contactTextArea{
-    @apply w-full rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 py-2 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300 resize-none
-}
+/* ===== Smooth Scroll ===== */
+html {
+  scroll-behavior: smooth;
 }
 
+/* ===== Theme Transition ===== */
+* {
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* ===== Dark Mode Component Styles ===== */
+@layer components {
+  .dark .bannerIcon {
+    @apply w-16 h-16 bg-black bg-opacity-25 text-gray-200 text-xl inline-flex items-center justify-center rounded-md shadow-shadowOne hover:bg-opacity-40 hover:-translate-y-1 transition-all hover:text-designColor cursor-pointer duration-300;
+  }
+  .bannerIcon {
+    @apply w-16 h-16 bg-white text-lightBody text-xl inline-flex items-center justify-center rounded-md shadow-lightShadow hover:shadow-lightShadowHover hover:-translate-y-1 transition-all hover:text-designColor cursor-pointer duration-300 border border-lightBorder;
+  }
+
+  .dark .resumeLi {
+    @apply w-full h-20 bg-black bg-opacity-25 text-xl text-gray-300 flex justify-center cursor-pointer hover:bg-opacity-40 duration-300 items-center border-[1px] rounded-none;
+  }
+  .resumeLi {
+    @apply w-full h-20 bg-white text-xl text-lightBody flex justify-center cursor-pointer hover:bg-gray-50 duration-300 items-center border-[1px] border-lightBorder rounded-none;
+  }
+
+  .dark .bgOpacity {
+    @apply bg-black bg-opacity-40;
+  }
+  .bgOpacity {
+    @apply bg-gray-200;
+  }
+
+  .dark .contactInput {
+    @apply w-full h-12 rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300;
+  }
+  .contactInput {
+    @apply w-full h-12 rounded-lg border-[1px] border-lightBorder bg-white text-lightHeading px-4 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-transparent duration-300 shadow-sm;
+  }
+
+  .dark .contactTextArea {
+    @apply w-full rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 py-2 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300 resize-none;
+  }
+  .contactTextArea {
+    @apply w-full rounded-lg border-[1px] border-lightBorder bg-white text-lightHeading px-4 py-2 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-transparent duration-300 resize-none shadow-sm;
+  }
+}
+
+/* ===== Active Nav Link ===== */
+.dark .active {
+  color: white;
+}
 .active {
-    color: white;
+  color: #ff014f;
+  font-weight: 600;
 }
-.scrollbar-hide::-webkit-scrollbar{
-    display: none;
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
-.bannerimg{
-    background-color: red;
+
+.bannerimg {
+  background-color: red;
 }
+
 .customIcon {
-    font-size: 24px !important;
-    /* Use !important to ensure the style is applied */
+  font-size: 24px !important;
 }
-.projectimg-one{
-    width: 50%;
+
+.projectimg-one {
+  width: 50%;
+}
+
+/* ===== Gradient Animated Name ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #ff014f, #ff6b9d, #ff014f);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+/* ===== Floating Animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ===== Glassmorphism ===== */
+.dark .glass-card {
+  background: rgba(30, 32, 36, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Glow border on hover ===== */
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+.hover-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: background 0.4s ease;
+  pointer-events: none;
+}
+.hover-glow:hover::before {
+  background: linear-gradient(135deg, #ff014f, #ff6b9d, #ff014f);
 }

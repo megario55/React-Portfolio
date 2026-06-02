@@ -7,11 +7,17 @@ import FooterBottom from "./components/footer/FooterBottom";
 import Navbar from "./components/navbar/Navbar";
 import Projects from "./components/projects/Projects";
 import Skills from "./components/resume/Skills";
-import FadeInSection from "./components/FadeInSection"; // Import the wrapper
+import FadeInSection from "./components/FadeInSection";
+import { useTheme } from "./context/ThemeContext";
 
 function App() {
+  const { darkMode } = useTheme();
   return (
-    <div className="w-full h-auto bg-bodyColor text-lightText px-4">
+    <div className={`w-full h-auto px-4 transition-colors duration-500 ${
+      darkMode
+        ? 'bg-bodyColor text-lightText'
+        : 'bg-lightBg text-lightBody'
+    }`}>
       <Navbar />
       <div className="max-w-screen-xl mx-auto">
         <FadeInSection><Banner /></FadeInSection>

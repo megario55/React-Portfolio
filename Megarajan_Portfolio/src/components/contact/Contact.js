@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import Title from '../layouts/Title';
 import ContactLeft from './ContactLeft';
 import toast, { Toaster } from 'react-hot-toast';
+import { useTheme } from '../../context/ThemeContext';
+import { motion } from 'framer-motion';
 import './Contact.css';
 
 const Contact = () => {
+  const { darkMode } = useTheme();
   const [formValues, setFormValues] = useState({
     name: '',
     phoneNo: '',
@@ -68,7 +71,9 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="w-full py-20 border-b-[1px] border-b-black">
+    <section id="contact" className={`w-full py-20 border-b-[1px] ${
+      darkMode ? 'border-b-black' : 'border-b-lightBorder'
+    }`}>
       <Toaster /> {/* Toast container */}
       <div className="flex justify-center items-center text-center">
         <Title title="CONTACT" des="Contact With Me" />
@@ -76,11 +81,15 @@ const Contact = () => {
       <div className="w-full">
         <div className="w-full h-auto flex flex-col lgl:flex-row justify-between">
           <ContactLeft />
-          <div className="w-full lgl:w-[60%] h-full py-10 bg-gradient-to-r from-[#1e2024] to-[#23272b] flex flex-col gap-8 p-4 lgl:p-8 rounded-lg shadow-shadowOne">
+          <div className={`w-full lgl:w-[60%] h-full py-10 flex flex-col gap-8 p-4 lgl:p-8 rounded-lg transition-all duration-300 ${
+            darkMode
+              ? 'bg-gradient-to-r from-[#1e2024] to-[#23272b] shadow-shadowOne'
+              : 'bg-white shadow-lightShadow border border-lightBorder'
+          }`}>
             <form className="w-full flex flex-col gap-4 lgl:gap-6 py-2 lgl:py-5" onSubmit={handleSubmit}>
               <div className="w-full flex flex-col lgl:flex-row gap-10">
                 <div className="w-full lgl:w-1/2 flex flex-col gap-4">
-                  <p className="text-sm text-gray-400 uppercase tracking-wide">Your name</p>
+                  <p className={`text-sm uppercase tracking-wide ${darkMode ? 'text-gray-400' : 'text-lightMuted'}`}>Your name</p>
                   <input
                     name="name"
                     value={formValues.name}
@@ -90,7 +99,7 @@ const Contact = () => {
                   />
                 </div>
                 <div className="w-full lgl:w-1/2 flex flex-col gap-4">
-                  <p className="text-sm text-gray-400 uppercase tracking-wide">Phone Number</p>
+                  <p className={`text-sm uppercase tracking-wide ${darkMode ? 'text-gray-400' : 'text-lightMuted'}`}>Phone Number</p>
                   <input
                     name="phoneNo"
                     value={formValues.phoneNo}
@@ -101,7 +110,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-4">
-                <p className="text-sm text-gray-400 uppercase tracking-wide">Email</p>
+                <p className={`text-sm uppercase tracking-wide ${darkMode ? 'text-gray-400' : 'text-lightMuted'}`}>Email</p>
                 <input
                   name="email"
                   value={formValues.email}
@@ -111,7 +120,7 @@ const Contact = () => {
                 />
               </div>
               <div className="flex flex-col gap-4">
-                <p className="text-sm text-gray-400 uppercase tracking-wide">Subject</p>
+                <p className={`text-sm uppercase tracking-wide ${darkMode ? 'text-gray-400' : 'text-lightMuted'}`}>Subject</p>
                 <input
                   name="subject"
                   value={formValues.subject}
@@ -121,7 +130,7 @@ const Contact = () => {
                 />
               </div>
               <div className="flex flex-col gap-4">
-                <p className="text-sm text-gray-400 uppercase tracking-wide">Message</p>
+                <p className={`text-sm uppercase tracking-wide ${darkMode ? 'text-gray-400' : 'text-lightMuted'}`}>Message</p>
                 <textarea
                   name="message"
                   value={formValues.message}
@@ -132,17 +141,23 @@ const Contact = () => {
                 ></textarea>
               </div>
               <div className="w-full">
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full h-12 bg-[#141518] rounded-lg text-base text-gray-400 tracking-wider uppercase hover:text-white duration-300 hover:border-[1px] hover:border-designColor border-transparent flex items-center justify-center gap-2"
+                  className={`w-full h-12 rounded-lg text-base tracking-wider uppercase duration-300 border-[1px] flex items-center justify-center gap-2 ${
+                    darkMode
+                      ? 'bg-[#141518] text-gray-400 hover:text-white hover:border-designColor border-transparent'
+                      : 'bg-lightBg text-lightBody hover:text-designColor hover:border-designColor border-lightBorder'
+                  }`}
                   disabled={loading}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {loading ? (
-                    <span className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></span>
+                    <span className="animate-spin rounded-full h-5 w-5 border-2 border-designColor border-t-transparent"></span>
                   ) : (
                     "Send Message"
                   )}
-                </button>
+                </motion.button>
               </div>
             </form>
           </div>

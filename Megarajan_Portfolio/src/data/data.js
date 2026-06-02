@@ -1,6 +1,6 @@
 import { AiFillAppstore } from "react-icons/ai";
-import {  FaGlobe,FaCode} from "react-icons/fa";
-import { SiAntdesign } from "react-icons/si";
+import { FaGlobe, FaCode } from "react-icons/fa";
+// SiAntdesign removed — was unused
 
 // Features Data
 export const featuresData = [
