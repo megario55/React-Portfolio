@@ -47,7 +47,7 @@ const Skills = () => {
           </p>
           <h2 className={`text-3xl md:text-4xl font-bold ${darkMode ? '' : 'text-lightHeading'}`}>Frontend Skill</h2>
         </div>
-        <div className="mt-14 w-full flex flex-col gap-6">
+        <div className="w-full flex flex-col gap-6">
           <SkillBar name="HTML5" percentage="100%" delay={0.1} />
           <SkillBar name="CSS" percentage="95%" delay={0.2} />
           <SkillBar name="JavaScript" percentage="85%" delay={0.3} />
