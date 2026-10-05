@@ -6,7 +6,8 @@ import img02 from '../../assets/images/Resume-builder.png';
 import img03 from '../../assets/images/Internship.png';
 import img04 from '../../assets/images/ATTS-Aurumm.png';
 import img01 from '../../assets/images/React-clone.png'
-import img06 from '../../assets/images/Shopify.png';
+// import img06 from '../../assets/images/Shopify.png';
+import img07 from '../../assets/images/Janani.png';
 import { useTheme } from '../../context/ThemeContext';
 
 const Projects = () => {
@@ -30,8 +31,16 @@ const Projects = () => {
           des="Emailcon Campaign is to Create customizable email templates using components like Headings, Buttons, Clickable Images, Paragraphs, and Social Icons.Send emails to single or bulk recipients using Nodemailer , store recipient emails via Excel file , and track campaign status in MongoDB."
 
           src={img05}
-          alt='https://github.com/megario55/Emailcon-tracking'
+          // alt='https://github.com/megario55/Emailcon-tracking'
           alt2='https://emailcon.in/'
+        />
+
+         <ProjectsCard
+          title="Janani Smile Care"
+          des="Janani Smile Care Dental Hospital is a full-featured dental practice platform built to modernize patient interactions for advanced procedures like Invisalign, Implants, and Smile Designing. It features an appointment management flow, dedicated service showcases, and interactive comparison tools to build patient trust."
+          src={img07}
+          // alt='https://github.com/megario55/Emailcon-tracking'
+          alt2='https://jananismilecare.com/'
         />
         <ProjectsCard
           title="Resume Builder App"
@@ -64,13 +73,13 @@ resume templates and multi-color customization for a personalized user experienc
           alt='https://github.com/megario55/reactproject'
           alt2='https://reactproject-cyan.vercel.app/'
         />
-        <ProjectsCard
+        {/* <ProjectsCard
           title="Shopify Clone App"
           des="A Shopify clone app replicates the core features of the popular e-commerce platform,showcases responsive and visually appealing web design using the Bootstrap framework, demonstrating its grid system, components, and styling features."
           src={img06}
           alt='https://github.com/megario55/front-end-project'
           alt2='https://megario55.github.io/front-end-project/shopify.html'
-        />
+        /> */}
       </div>
     </section>
   );
